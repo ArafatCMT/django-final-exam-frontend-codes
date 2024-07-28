@@ -14,7 +14,7 @@ fetch("navbar.html")
     if (token){
         navLeftSideElement.innerHTML += `
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/home.html">Dashboard</a>
+                                <a class="nav-link active" aria-current="page" href="./home.html">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link addPost"  data-bs-toggle="modal" data-bs-target="#createPostModal">AddPost</a>
@@ -47,7 +47,7 @@ fetch("navbar.html")
     else{
         navLeftSideElement.innerHTML += `
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/index.html">Dashboard</a>
+                                <a class="nav-link active" aria-current="page" href="./index.html">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Vedio</a>
