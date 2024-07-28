@@ -1,98 +1,95 @@
-const handleRegistration = (event) =>{
-    event.preventDefault()
+const handleRegistration = (event) => {
+  event.preventDefault();
 
-    const form = document.getElementById("registration-form")
-    const formData = new FormData(form)
+  const form = document.getElementById("registration-form");
+  const formData = new FormData(form);
 
-    const RegistrationData = {
-        username : formData.get("username"),
-        first_name : formData.get("first_name"),
-        email : formData.get("email"),
-        last_name : formData.get("last_name"),
-        password : formData.get("password1"),
-        confirm_password : formData.get("password2"),
+  const RegistrationData = {
+    username: formData.get("username"),
+    first_name: formData.get("first_name"),
+    email: formData.get("email"),
+    last_name: formData.get("last_name"),
+    password: formData.get("password1"),
+    confirm_password: formData.get("password2"),
+  };
+
+  // password check
+  // console.log(RegistrationData.password, RegistrationData.confirm_password)
+  if (RegistrationData.password === RegistrationData.confirm_password) {
+    document.getElementById("error").innerText = "";
+
+    if (
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+        RegistrationData.password
+      )
+    ) {
+      fetch("https://net-book.onrender.com/accounts/register/", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(RegistrationData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          window.location.href = "./login.html";
+        });
+    } else {
+      document.getElementById("error").innerText =
+        "password must Minimum eight characters, at least one uppercase letter, one lowercase letter and one number";
     }
-
-    // password check
-    // console.log(RegistrationData.password, RegistrationData.confirm_password)
-    if (RegistrationData.password === RegistrationData.confirm_password)
-        {
-            document.getElementById('error').innerText = ""
-            
-            if(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(RegistrationData.password))
-            {
-                fetch("http://127.0.0.1:8000/accounts/register/", {
-                    method: "POST",
-                    headers: {'content-type': "application/json"},
-                    body: JSON.stringify(RegistrationData)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    window.location.href = "./login.html"
-                })
-            }
-            else
-            {
-                document.getElementById('error').innerText = "password must Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
-            }
-        }
-        else
-        {
-            document.getElementById('error').innerText = "password and confirm password dosen't match"
-        }
-
-}
+  } else {
+    document.getElementById("error").innerText =
+      "password and confirm password dosen't match";
+  }
+};
 
 const handleLogin = (event) => {
-    event.preventDefault()
+  event.preventDefault();
 
-    const form = document.getElementById("login-form")
-    const formData = new FormData(form)
+  const form = document.getElementById("login-form");
+  const formData = new FormData(form);
 
-    const loginData = {
-        username : formData.get("username"),
-        password : formData.get("password"),
-    }
+  const loginData = {
+    username: formData.get("username"),
+    password: formData.get("password"),
+  };
 
-    console.log(loginData)
-    fetch("http://127.0.0.1:8000/accounts/login/", {
-        method: "POST",
-        headers: {"content-type": "application/json"},
-        body: JSON.stringify(loginData)
+  console.log(loginData);
+  fetch("https://net-book.onrender.com/accounts/login/", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(loginData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.token && data.user_id) {
+        // console.log(data.token, data.user_id);
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("accountId", data.user_id);
+        window.location.href = "./home.html";
+      } else {
+        window.location.href = "./login.html";
+        throw new Error("Invalid login response");
+      }
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.token && data.user_id) {
-            // console.log(data.token, data.user_id);
-            localStorage.setItem("authToken", data.token);
-            localStorage.setItem("accountId", data.user_id);
-            window.location.href = "./home.html";
-        } else {
-            window.location.href = "./login.html";
-            throw new Error('Invalid login response');
-        }
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        });
-    
-}
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+};
 
-const handleLogout = () =>{
-    const token = localStorage.getItem("authToken")
-    console.log(token)
+const handleLogout = () => {
+  const token = localStorage.getItem("authToken");
+  console.log(token);
 
-    fetch("http://127.0.0.1:8000/accounts/logout/", {
-        method: "GET",
-        headers: {
-        "content-type" : "application/json",
-        Authorization : `Token ${token}`,
-    }
-    })
-    .then(res =>{
-        // console.log('hello')
-        localStorage.removeItem("authToken")
-        localStorage.removeItem("accountId")
-        window.location.href = "./index.html"
-    })
-}
+  fetch("https://net-book.onrender.com/accounts/logout/", {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+  }).then((res) => {
+    // console.log('hello')
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("accountId");
+    window.location.href = "./index.html";
+  });
+};

@@ -1,23 +1,20 @@
 const ShowAllPostForPublic = () => {
-    // total post 
-  fetch("http://127.0.0.1:8000/posts/all/")
+  // total post
+  fetch("https://net-book.onrender.com/posts/all/")
     .then((res) => res.json())
     .then((posts) => {
       const parent = document.getElementById("allPost");
 
       posts.forEach((post) => {
-        // console.log(post)
-        // if (post.id != null){
-        //   console.log('yes')
-        // }
+        
         // kon account thake post kora hoica
-        fetch(`http://127.0.0.1:8000/accounts/profile/${post.account}/`)
+        fetch(`https://net-book.onrender.com/accounts/profile/${post.account}/`)
           .then((res) => res.json())
           .then((account) => {
             // console.log(account)
 
             // account er first_name r last_name bair kortaci
-            fetch(`http://127.0.0.1:8000/accounts/user/${account.user}/`)
+            fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 // console.log(user);
@@ -28,13 +25,12 @@ const ShowAllPostForPublic = () => {
                 div.classList.add("mb-5");
 
                 // ak ta post e total like bair kortaci
-                fetch(`http://127.0.0.1:8000/likes/total/?post_id=${post.id}`)
+                fetch(`https://net-book.onrender.com/likes/total/?post_id=${post.id}`)
                   .then((res) => res.json())
                   .then((like) => {
-
                     // ak ta post e total comment bair kortaci
                     fetch(
-                      `http://127.0.0.1:8000/comments/list/?post_id=${post.id}`
+                      `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
                     )
                       .then((res) => res.json())
                       .then((comment) => {
@@ -42,16 +38,20 @@ const ShowAllPostForPublic = () => {
                             <div class="card mx-auto container" style="width: 50rem;">
                             <div class="card-body">
                                 <div class="card-body-container mb-2">
-                                <a href="./visitProfile.html?account_id=${post.account}"><div>
+                                <a href="./visitProfile.html?account_id=${
+                                  post.account
+                                }"><div>
                                         <img src=${
                                           account.image_url
                                         } class="pro-img" alt="profile">
                                     </div></a>
                                     
                                     <div>
-                                        <a href="./visitProfile.html?account_id=${post.account}" class="link" ><h6 class="title pb-0 mb-0">${
-                                          user.first_name + " " + user.last_name
-                                        }</h6></a>
+                                        <a href="./visitProfile.html?account_id=${
+                                          post.account
+                                        }" class="link" ><h6 class="title pb-0 mb-0">${
+                          user.first_name + " " + user.last_name
+                        }</h6></a>
                                         
                                         <small class="create mt-0 pt-0">Created: ${
                                           post.created_on
@@ -72,7 +72,9 @@ const ShowAllPostForPublic = () => {
                                 <i class="fs-5">${like?.length || 0}</i>
                                 </div>
                                 <div class="col-6 text-center">
-                                <a href="./dashboardPostComments.html?post_id=${post.id}" ><i class="fa-regular fa-comment fs-5"></i></a>
+                                <a href="./dashboardPostComments.html?post_id=${
+                                  post.id
+                                }" ><i class="fa-regular fa-comment fs-5"></i></a>
                                 <i class="fs-5">${comment?.length || 0}</i>
                                 </div>
                             </div> 
@@ -87,10 +89,9 @@ const ShowAllPostForPublic = () => {
     });
 };
 
-
-const message = (event)=>{
-    event.preventDefault()
-    const msg = "Unlogged in User can not add a post and like a post and comment a post. Please login. Thank You!! "
-    alert(msg)
-}
-
+const message = (event) => {
+  event.preventDefault();
+  const msg =
+    "Unlogged in User can not add a post and like a post and comment a post. Please login. Thank You!! ";
+  alert(msg);
+};

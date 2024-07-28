@@ -12,7 +12,7 @@ const displayPost = () => {
 
   const parent = document.getElementById("post_containter");
   // post
-  fetch(`http://127.0.0.1:8000/posts/detail/${postId}/`, {
+  fetch(`https://net-book.onrender.com/posts/detail/${postId}/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -21,14 +21,14 @@ const displayPost = () => {
   })
     .then((res) => res.json())
     .then((post) => {
-    //   console.log(post);
+      //   console.log(post);
       // hello
-      fetch(`http://127.0.0.1:8000/accounts/profile/${post.account}/`)
+      fetch(`https://net-book.onrender.com/accounts/profile/${post.account}/`)
         .then((res) => res.json())
         .then((account) => {
           // console.log(account.image_url)
 
-          fetch(`http://127.0.0.1:8000/accounts/user/${account.user}/`)
+          fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
             .then((res) => res.json())
             .then((user) => {
               // console.log(user)
@@ -38,11 +38,11 @@ const displayPost = () => {
               div.classList.add("col-sm-12");
               div.classList.add("mb-5");
 
-              fetch(`http://127.0.0.1:8000/likes/total/?post_id=${post.id}`)
+              fetch(`https://net-book.onrender.com/likes/total/?post_id=${post.id}`)
                 .then((res) => res.json())
                 .then((like) => {
                   fetch(
-                    `http://127.0.0.1:8000/comments/list/?post_id=${post.id}`
+                    `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
                   )
                     .then((res) => res.json())
                     .then((comment) => {
@@ -50,15 +50,19 @@ const displayPost = () => {
                             <div class="card mx-auto container" style="width: 50rem;">
                             <div class="card-body">
                                 <div class="card-body-container mb-2">
-                                    <a href="./visitProfile.html?account_id=${post.account}"><div>
+                                    <a href="./visitProfile.html?account_id=${
+                                      post.account
+                                    }"><div>
                                         <img src=${
                                           account.image_url
                                         } class="pro-img" alt="profile">
                                     </div></a>
                                     <div>
-                                        <a href="./visitProfile.html?account_id=${post.account}" class="link" ><h6 class="title pb-0 mb-0">${
-                                          user.first_name + " " + user.last_name
-                                        }</h6></a>
+                                        <a href="./visitProfile.html?account_id=${
+                                          post.account
+                                        }" class="link" ><h6 class="title pb-0 mb-0">${
+                        user.first_name + " " + user.last_name
+                      }</h6></a>
                                         <small class="create pt-0 mt-0">Created: ${
                                           post.created_on
                                         }</small>
@@ -108,7 +112,7 @@ const loadCommentForSinglePost = () => {
 
   const parent = document.getElementById("comment_container");
 
-  fetch(`http://127.0.0.1:8000/comments/list/?post_id=${postId}`, {
+  fetch(`https://net-book.onrender.com/comments/list/?post_id=${postId}`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -121,26 +125,30 @@ const loadCommentForSinglePost = () => {
       comments.forEach((comment) => {
         const div = document.createElement("div");
 
-        fetch(`http://127.0.0.1:8000/accounts/profile/${comment.account}/`)
+        fetch(`https://net-book.onrender.com/accounts/profile/${comment.account}/`)
           .then((res) => res.json())
           .then((account) => {
             // console.log(account)
-            fetch(`http://127.0.0.1:8000/accounts/user/${account.user}/`)
+            fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 // console.log(user)
                 div.innerHTML = `
                 <div class="card-body mb-3 border col-10 mx-auto">
                 <div class="col-11 card-body-container mb-2">
-                    <a href="./visitProfile.html?account_id=${comment.account}"><div>
+                    <a href="./visitProfile.html?account_id=${
+                      comment.account
+                    }"><div>
                                         <img src=${
                                           account.image_url
                                         } class="pro-img" alt="profile">
                                     </div></a>
                     <div>
-                    <a href="./visitProfile.html?account_id=${comment.account}" class="link" ><h6 class="title pb-0 mb-0">${
-                                          user.first_name + " " + user.last_name
-                                        }</h6></a>
+                    <a href="./visitProfile.html?account_id=${
+                      comment.account
+                    }" class="link" ><h6 class="title pb-0 mb-0">${
+                  user.first_name + " " + user.last_name
+                }</h6></a>
                     <small class="small pt-0 mt-0">Created : ${
                       comment.created_on
                     }</small>

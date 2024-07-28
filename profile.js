@@ -1,7 +1,7 @@
 const myPosts = () => {
   const accountId = localStorage.getItem("accountId");
   // console.log(accountId)
-  fetch(`http://127.0.0.1:8000/posts/all/?account_id=${accountId}`)
+  fetch(`https://net-book.onrender.com/posts/all/?account_id=${accountId}`)
     .then((res) => res.json())
     .then((posts) => {
       // console.log(posts)
@@ -9,12 +9,12 @@ const myPosts = () => {
 
       posts.forEach((post) => {
         // console.log(post)
-        fetch(`http://127.0.0.1:8000/accounts/profile/${post.account}/`)
+        fetch(`https://net-book.onrender.com/accounts/profile/${post.account}/`)
           .then((res) => res.json())
           .then((account) => {
             // console.log(account);
 
-            fetch(`http://127.0.0.1:8000/accounts/user/${account.user}/`)
+            fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 // console.log(user);
@@ -24,11 +24,11 @@ const myPosts = () => {
                 div.classList.add("col-sm-12");
                 div.classList.add("mb-5");
 
-                fetch(`http://127.0.0.1:8000/likes/total/?post_id=${post.id}`)
+                fetch(`https://net-book.onrender.com/likes/total/?post_id=${post.id}`)
                   .then((res) => res.json())
                   .then((like) => {
                     fetch(
-                      `http://127.0.0.1:8000/comments/list/?post_id=${post.id}`
+                      `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
                     )
                       .then((res) => res.json())
                       .then((comment) => {
@@ -91,6 +91,7 @@ const myPosts = () => {
                                 }"><i class="fa-regular fa-comment fs-5"></i></a>
                                 <i class="fs-5">${comment?.length || 0}</i>
                             </div> 
+                            
                             <div class="modal fade" id="editModal_${
                               post.id
                             }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,7 +128,7 @@ const myPosts = () => {
                 `;
                       });
                   });
-                  parent.appendChild(div);
+                parent.appendChild(div);
               });
           });
       });
@@ -141,7 +142,7 @@ const deletePost = (event, id) => {
   // console.log(postId)
   const token = localStorage.getItem("authToken");
 
-  fetch(`http://127.0.0.1:8000/posts/detail/${id}/`, {
+  fetch(`https://net-book.onrender.com/posts/detail/${id}/`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -158,7 +159,7 @@ const Like_A_Post = (event, id) => {
   const token = localStorage.getItem("authToken");
   // console.log(token)
 
-  fetch(`http://127.0.0.1:8000/posts/detail/${id}/`, {
+  fetch(`https://net-book.onrender.com/posts/detail/${id}/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -171,7 +172,7 @@ const Like_A_Post = (event, id) => {
         post: post.id,
       };
 
-      fetch("http://127.0.0.1:8000/likes/like/", {
+      fetch("https://net-book.onrender.com/likes/like/", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -189,7 +190,7 @@ const loadProfileData = () => {
   accountId = localStorage.getItem("accountId");
   // console.log(accountId)
 
-  fetch(`http://127.0.0.1:8000/accounts/profile/${accountId}/`)
+  fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
     .then((res) => res.json())
     .then((data) => {
       const topHeader = document.getElementById("top-header");
@@ -199,7 +200,7 @@ const loadProfileData = () => {
       div.classList.add("img-div");
       // console.log(data)
 
-      fetch(`http://127.0.0.1:8000/accounts/user/${data.user}/`)
+      fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
         .then((res) => res.json())
         .then((user) => {
           // console.log(user)
@@ -253,7 +254,7 @@ const UpdateProfileData = (event) => {
         phone_no: phone_no,
         city: address,
       };
-      fetch(`http://127.0.0.1:8000/accounts/profile/${accountId}/`, {
+      fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -262,7 +263,7 @@ const UpdateProfileData = (event) => {
         body: JSON.stringify(profileData),
       })
         .then((res) => res.json())
-        .then((data) => window.location.href ="./profile.html")
+        .then((data) => (window.location.href = "./profile.html"))
         .catch((err) => console.log(data));
     })
     .catch((err) => console.log(err));
@@ -270,6 +271,5 @@ const UpdateProfileData = (event) => {
 
 loadProfileData();
 myPosts();
-
 
 // https://youtu.be/i0ar7W98Osc?si=CEf2IQQnIFWYxQYK

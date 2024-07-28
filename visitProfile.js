@@ -8,7 +8,7 @@ const OtherPosts = () => {
   const accountId = QueryParam();
   // console.log(accountId)
 
-      fetch(`http://127.0.0.1:8000/posts/all/?account_id=${accountId}`)
+      fetch(`https://net-book.onrender.com/posts/all/?account_id=${accountId}`)
         .then((res) => res.json())
         .then((posts) => {
           // console.log(posts)
@@ -16,12 +16,12 @@ const OtherPosts = () => {
 
           posts.forEach((post) => {
             // console.log(post)
-            fetch(`http://127.0.0.1:8000/accounts/profile/${post.account}/`)
+            fetch(`https://net-book.onrender.com/accounts/profile/${post.account}/`)
               .then((res) => res.json())
               .then((account) => {
                 // console.log(account);
 
-                fetch(`http://127.0.0.1:8000/accounts/user/${account.user}/`)
+                fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
                   .then((res) => res.json())
                   .then((user) => {
                     // console.log(user);
@@ -32,12 +32,12 @@ const OtherPosts = () => {
                     div.classList.add("mb-5");
 
                     fetch(
-                      `http://127.0.0.1:8000/likes/total/?post_id=${post.id}`
+                      `https://net-book.onrender.com/likes/total/?post_id=${post.id}`
                     )
                       .then((res) => res.json())
                       .then((like) => {
                         fetch(
-                          `http://127.0.0.1:8000/comments/list/?post_id=${post.id}`
+                          `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
                         )
                           .then((res) => res.json())
                           .then((comment) => {
@@ -100,7 +100,7 @@ const OtherPosts = () => {
 const loadProfile = () => {
   const accountId = QueryParam();
 
-      fetch(`http://127.0.0.1:8000/accounts/profile/${accountId}/`)
+      fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
         .then((res) => res.json())
         .then((data) => {
           const topHeader = document.getElementById("img-profile");
@@ -110,7 +110,7 @@ const loadProfile = () => {
           div.classList.add("img-div");
           // console.log(data)
 
-          fetch(`http://127.0.0.1:8000/accounts/user/${data.user}/`)
+          fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
             .then((res) => res.json())
             .then((user) => {
               // console.log(user)
