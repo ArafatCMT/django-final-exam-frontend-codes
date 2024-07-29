@@ -161,6 +161,7 @@ const loadComment = () => {
   // console.log('nice',postId)
 
   const token = localStorage.getItem("authToken");
+  const accountId = localStorage.getItem("accountId");
   const parent = document.getElementById("comment_section");
 
   fetch(`https://net-book.onrender.com/comments/list/?post_id=${postId}`, {
@@ -175,6 +176,7 @@ const loadComment = () => {
       // console.log(comments)
 
       comments.forEach((comment) => {
+        // console.log(comment)
         const div = document.createElement("div");
 
         fetch(`https://net-book.onrender.com/accounts/profile/${comment.account}/`)
@@ -185,9 +187,11 @@ const loadComment = () => {
               .then((res) => res.json())
               .then((user) => {
                 // console.log(user)
-                div.innerHTML = `
+                if (accountId == comment.account) {
+                  div.innerHTML = `
                 <div class="card-body mb-3 border col-10 mx-auto">
-                <div class="col-11 card-body-container mb-2">
+                <div class="col-12 row">
+                <div class="col-9 card-body-container mb-2">
                     <a href="./visitProfileForLoggedInUser.html?account_id=${
                       comment.account
                     }"><div>
@@ -199,17 +203,89 @@ const loadComment = () => {
                     <a href="./visitProfileForLoggedInUser.html?account_id=${
                       comment.account
                     }" class="link" ><h6 class="title pb-0 mb-0">${
-                  user.first_name + " " + user.last_name
-                }</h6></a>
+                    user.first_name + " " + user.last_name
+                  }</h6></a>
+                    <small class="small pt-0 mt-0">Created : ${
+                      comment.created_on
+                    }</small>
+                    </div>
+                </div>
+                <div class="col-3 text-center">
+                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#commentModal_${
+                      comment.id
+                    }">Edit</button>
+                    <a onclick="deleteComment(event,${
+                      comment.id
+                    })" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+                </div>
+      
+                <p class="card-text">${comment.body}</p>
+                </div>
+
+                <div class="modal fade" id="commentModal_${
+                  comment.id
+                }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Edit Your Comment</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <form id="comment-update-form_${
+                    comment.id
+                  }" onsubmit="editComment(event,${comment.id})">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                              <textarea class="form-control" id="post-description" rows="4" name="comment-body">${
+                                comment.body
+                              }</textarea>
+                        </div>
+                                    
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+        
+                </div>
+      
+              </div>
+              </div>
+              </div>
+            `;
+            } 
+          else {
+                  div.innerHTML = `
+                <div class="card-body mb-3 border col-10 mx-auto">
+                <div class="col-12 row">
+                <div class="col-9 card-body-container mb-2">
+                    <a href="./visitProfileForLoggedInUser.html?account_id=${
+                      comment.account
+                    }"><div>
+                                        <img src=${
+                                          account.image_url
+                                        } class="pro-img" alt="profile">
+                                    </div></a>
+                    <div>
+                    <a href="./visitProfileForLoggedInUser.html?account_id=${
+                      comment.account
+                    }" class="link" ><h6 class="title pb-0 mb-0">${
+                    user.first_name + " " + user.last_name
+                  }</h6></a>
                     <small class="small pt-0 mt-0">Created : ${
                       comment.created_on
                     }</small>
                     </div>
                 </div>
                 
+                </div>
                 <p class="card-text">${comment.body}</p>
                 </div>
             `;
+                }
                 parent.appendChild(div);
               });
           });
@@ -249,3 +325,108 @@ const Like = (event, id) => {
     })
     .catch((err) => console.log(err));
 };
+
+const editComment = (event, commentId) => {
+  event.preventDefault();
+  const postId = getQueryParam();
+
+  const form = document.getElementById(`comment-update-form_${commentId}`);
+  const formData = new FormData(form);
+
+  const token = localStorage.getItem("authToken");
+
+  const commentData = {
+    post: postId,
+    body: formData.get("comment-body"),
+  };
+  // console.log(JSON.stringify(commentData))
+
+  fetch(`https://net-book.onrender.com/comments/detail/${commentId}/`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+    body: JSON.stringify(commentData),
+  })
+    .then((res) => (window.location.href = `./comments.html?post_id=${postId}`))
+    .catch((err) => console.log(err));
+};
+
+const deleteComment = (event, commentId) => {
+  event.preventDefault();
+  const postId = getQueryParam();
+  const token = localStorage.getItem("authToken");
+
+  fetch(`https://net-book.onrender.com/comments/detail/${commentId}/`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+  })
+    .then((res) => (window.location.href = `./comments.html?post_id=${postId}`))
+    .catch((err) => console.log(err));
+};
+
+
+// const loadComment = () => {
+//   const postId = getQueryParam();
+//   // console.log('nice',postId)
+
+//   const token = localStorage.getItem("authToken");
+//   const parent = document.getElementById("comment_section");
+
+//   fetch(`https://net-book.onrender.com/comments/list/?post_id=${postId}`, {
+//     method: "GET",
+//     headers: {
+//       "content-type": "application/json",
+//       Authorization: `Token ${token}`,
+//     },
+//   })
+//     .then((res) => res.json())
+//     .then((comments) => {
+//       // console.log(comments)
+
+//       comments.forEach((comment) => {
+//         const div = document.createElement("div");
+
+//         fetch(`https://net-book.onrender.com/accounts/profile/${comment.account}/`)
+//           .then((res) => res.json())
+//           .then((account) => {
+//             // console.log(account)
+//             fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+//               .then((res) => res.json())
+//               .then((user) => {
+//                 // console.log(user)
+//                 div.innerHTML = `
+//                 <div class="card-body mb-3 border col-10 mx-auto">
+//                 <div class="col-11 card-body-container mb-2">
+//                     <a href="./visitProfileForLoggedInUser.html?account_id=${
+//                       comment.account
+//                     }"><div>
+//                                         <img src=${
+//                                           account.image_url
+//                                         } class="pro-img" alt="profile">
+//                                     </div></a>
+//                     <div>
+//                     <a href="./visitProfileForLoggedInUser.html?account_id=${
+//                       comment.account
+//                     }" class="link" ><h6 class="title pb-0 mb-0">${
+//                   user.first_name + " " + user.last_name
+//                 }</h6></a>
+//                     <small class="small pt-0 mt-0">Created : ${
+//                       comment.created_on
+//                     }</small>
+//                     </div>
+//                 </div>
+                
+//                 <p class="card-text">${comment.body}</p>
+//                 </div>
+//             `;
+//                 parent.appendChild(div);
+//               });
+//           });
+//       });
+//     });
+// };
