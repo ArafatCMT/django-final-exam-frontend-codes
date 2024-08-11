@@ -10,6 +10,7 @@ const showPost = () => {
   // console.log(postId)
 
   const token = localStorage.getItem("authToken");
+  const accountId = localStorage.getItem("accountId");
   const parent = document.getElementById("post_section");
 
   // post
@@ -41,69 +42,148 @@ const showPost = () => {
 
               fetch(`https://net-book.onrender.com/likes/total/?post_id=${post.id}`)
                 .then((res) => res.json())
-                .then((like) => {
-                  fetch(
-                    `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
-                  )
-                    .then((res) => res.json())
-                    .then((comment) => {
-                      div.innerHTML = `
-                            <div class="card mx-auto container" style="width: 50rem;">
-                            <div class="card-body">
-                                <div class="card-body-container mb-2">
-                                    <a href="./visitProfileForLoggedInUser.html?account_id=${
-                                      post.account
-                                    }"><div>
-                                        <img src=${
-                                          account.image_url
-                                        } class="pro-img" alt="profile">
-                                    </div></a>
-                                    <div>
-                                        <a href="./visitProfileForLoggedInUser.html?account_id=${
-                                          post.account
-                                        }" class="link" ><h6 class="title pb-0 mb-0">${
-                        user.first_name + " " + user.last_name
-                      }</h6></a>
-                                        <small class="create pt-0 mt-0">Created: ${
-                                          post.created_on
-                                        }</small>
-                                    </div>
-                                </div>
-                                
-                                <p class="">${post.description}</p>
-                                                               
-                            </div>
-                            <img src=${
-                              post.image_url
-                            } class="card-img-top" alt="...">
-                            <hr>
-                            <div class="d-flex mb-2">
-                                <div class="col-6 text-center">
-                                <a href="#" onclick="Like(event, ${
-                                  post.id
-                                })"><i class="fa-regular fa-thumbs-up fs-5"></i></a>
-                                <i class="fs-5">${like?.length || 0}</i>
-                                </div>
-                                <div class="col-6 text-center">
-                                <a href="./comments.html?post_id=${
-                                  post.id
-                                }"><i class="fa-regular fa-comment fs-5"></i></a>
-                                
-                                <i class="fs-5">${comment?.length || 0}</i>
-                                </div>
-                            </div> 
-
-                            <div class="comment-form mb-3">
-                            <form id="post-update-form" onsubmit="SubmitComment(event,${postId})" >
-                                <div class="mb-3">
-                                <textarea class="form-control" id="comment" rows="2" name="comment" placeholder="Write a comment...." required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Comment</button>
-                            </form>
-                            </div>
-                            </div>
-                `;
-                    });
+                .then((likes) => {
+                  let is_like = false;
+                  // console.log(likes)
+                  likes.forEach((like) =>{
+                    if(like.account == accountId)
+                    {
+                      is_like = true;
+                    }
+                  })
+                  // console.log(is_like)
+                  // console.log(accountId)
+                  
+                  if(is_like == true)
+                  {
+                    fetch(
+                      `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                    )
+                      .then((res) => res.json())
+                      .then((comment) => {
+                        div.innerHTML = `
+                              <div class="card mx-auto container" style="width: 50rem;">
+                              <div class="card-body">
+                                  <div class="card-body-container mb-2">
+                                      <a href="./visitProfileForLoggedInUser.html?account_id=${
+                                        post.account
+                                      }"><div>
+                                          <img src=${
+                                            account.image_url
+                                          } class="pro-img" alt="profile">
+                                      </div></a>
+                                      <div>
+                                          <a href="./visitProfileForLoggedInUser.html?account_id=${
+                                            post.account
+                                          }" class="link" ><h6 class="title pb-0 mb-0">${
+                          user.first_name + " " + user.last_name
+                        }</h6></a>
+                                          <small class="create pt-0 mt-0">Created: ${
+                                            post.created_on
+                                          }</small>
+                                      </div>
+                                  </div>
+                                  
+                                  <p class="">${post.description}</p>
+                                                                 
+                              </div>
+                              <img src=${
+                                post.image_url
+                              } class="card-img-top" alt="...">
+                              <hr>
+                              <div class="d-flex mb-2">
+                                  <div class="col-6 text-center">
+                                  <a href="#" onclick="Like(event,${
+                                    post.id
+                                  })"><i class="fa-solid fa-thumbs-up fs-5"></i></a>
+                                  <i class="fs-5">${likes?.length || 0}</i>
+                                  </div>
+                                  <div class="col-6 text-center">
+                                  <a href="./comments.html?post_id=${
+                                    post.id
+                                  }"><i class="fa-regular fa-comment fs-5"></i></a>
+                                  
+                                  <i class="fs-5">${comment?.length || 0}</i>
+                                  </div>
+                              </div> 
+  
+                              <div class="comment-form mb-3">
+                              <form id="post-update-form" onsubmit="SubmitComment(event,${postId})" >
+                                  <div class="mb-3">
+                                  <textarea class="form-control" id="comment" rows="2" name="comment" placeholder="Write a comment...." required></textarea>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Comment</button>
+                              </form>
+                              </div>
+                              </div>
+                  `;
+                      });
+                  }
+                  else
+                  {
+                    fetch(
+                      `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                    )
+                      .then((res) => res.json())
+                      .then((comment) => {
+                        div.innerHTML = `
+                              <div class="card mx-auto container" style="width: 50rem;">
+                              <div class="card-body">
+                                  <div class="card-body-container mb-2">
+                                      <a href="./visitProfileForLoggedInUser.html?account_id=${
+                                        post.account
+                                      }"><div>
+                                          <img src=${
+                                            account.image_url
+                                          } class="pro-img" alt="profile">
+                                      </div></a>
+                                      <div>
+                                          <a href="./visitProfileForLoggedInUser.html?account_id=${
+                                            post.account
+                                          }" class="link" ><h6 class="title pb-0 mb-0">${
+                          user.first_name + " " + user.last_name
+                        }</h6></a>
+                                          <small class="create pt-0 mt-0">Created: ${
+                                            post.created_on
+                                          }</small>
+                                      </div>
+                                  </div>
+                                  
+                                  <p class="">${post.description}</p>
+                                                                 
+                              </div>
+                              <img src=${
+                                post.image_url
+                              } class="card-img-top" alt="...">
+                              <hr>
+                              <div class="d-flex mb-2">
+                                  <div class="col-6 text-center">
+                                  <a href="#" onclick="Like(event,${
+                                    post.id
+                                  })"><i class="fa-regular fa-thumbs-up fs-5"></i></a>
+                                  <i class="fs-5">${likes?.length || 0}</i>
+                                  </div>
+                                  <div class="col-6 text-center">
+                                  <a href="./comments.html?post_id=${
+                                    post.id
+                                  }"><i class="fa-regular fa-comment fs-5"></i></a>
+                                  
+                                  <i class="fs-5">${comment?.length || 0}</i>
+                                  </div>
+                              </div> 
+  
+                              <div class="comment-form mb-3">
+                              <form id="post-update-form" onsubmit="SubmitComment(event,${postId})" >
+                                  <div class="mb-3">
+                                  <textarea class="form-control" id="comment" rows="2" name="comment" placeholder="Write a comment...." required></textarea>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Comment</button>
+                              </form>
+                              </div>
+                              </div>
+                  `;
+                      });
+                  }
                 });
               parent.appendChild(div);
             });
@@ -191,7 +271,7 @@ const loadComment = () => {
                   div.innerHTML = `
                 <div class="card-body mb-3 border col-10 mx-auto">
                 <div class="col-12 row">
-                <div class="col-9 card-body-container mb-2">
+                <div class="col-9 card-body-container mb-2" >
                     <a href="./visitProfileForLoggedInUser.html?account_id=${
                       comment.account
                     }"><div>
@@ -226,7 +306,7 @@ const loadComment = () => {
                 <div class="modal fade" id="commentModal_${
                   comment.id
                 }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Edit Your Comment</h5>
@@ -293,9 +373,11 @@ const loadComment = () => {
     });
 };
 
-const Like = (event, id) => {
+const Like = (event,id) => {
+  // const postId = getQueryParam();
   event.preventDefault();
-  // console.log(id)
+  
+  console.log(id)
   const token = localStorage.getItem("authToken");
   // console.log(token)
 
@@ -321,7 +403,7 @@ const Like = (event, id) => {
         body: JSON.stringify(likeData),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then(window.location.href = `./comments.html?post_id=${id}`);
     })
     .catch((err) => console.log(err));
 };
@@ -370,63 +452,4 @@ const deleteComment = (event, commentId) => {
 };
 
 
-// const loadComment = () => {
-//   const postId = getQueryParam();
-//   // console.log('nice',postId)
 
-//   const token = localStorage.getItem("authToken");
-//   const parent = document.getElementById("comment_section");
-
-//   fetch(`https://net-book.onrender.com/comments/list/?post_id=${postId}`, {
-//     method: "GET",
-//     headers: {
-//       "content-type": "application/json",
-//       Authorization: `Token ${token}`,
-//     },
-//   })
-//     .then((res) => res.json())
-//     .then((comments) => {
-//       // console.log(comments)
-
-//       comments.forEach((comment) => {
-//         const div = document.createElement("div");
-
-//         fetch(`https://net-book.onrender.com/accounts/profile/${comment.account}/`)
-//           .then((res) => res.json())
-//           .then((account) => {
-//             // console.log(account)
-//             fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
-//               .then((res) => res.json())
-//               .then((user) => {
-//                 // console.log(user)
-//                 div.innerHTML = `
-//                 <div class="card-body mb-3 border col-10 mx-auto">
-//                 <div class="col-11 card-body-container mb-2">
-//                     <a href="./visitProfileForLoggedInUser.html?account_id=${
-//                       comment.account
-//                     }"><div>
-//                                         <img src=${
-//                                           account.image_url
-//                                         } class="pro-img" alt="profile">
-//                                     </div></a>
-//                     <div>
-//                     <a href="./visitProfileForLoggedInUser.html?account_id=${
-//                       comment.account
-//                     }" class="link" ><h6 class="title pb-0 mb-0">${
-//                   user.first_name + " " + user.last_name
-//                 }</h6></a>
-//                     <small class="small pt-0 mt-0">Created : ${
-//                       comment.created_on
-//                     }</small>
-//                     </div>
-//                 </div>
-                
-//                 <p class="card-text">${comment.body}</p>
-//                 </div>
-//             `;
-//                 parent.appendChild(div);
-//               });
-//           });
-//       });
-//     });
-// };

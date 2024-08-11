@@ -121,6 +121,15 @@ const loadProfile = () => {
               <h3 class="text-center" id="profile-name">${
                 user.first_name + " " + user.last_name
               }</h3>
+
+                <div class="mt-5">
+                  <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-circle-info text-secondary"></i> <b>Profile</b> . Digital Creator</p>
+                  <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-briefcase text-secondary"></i> Works at Lorem ipsum dolor sit amet</p>
+                  <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-graduation-cap text-secondary"></i> Went to <b>Lorem ipsum dolor sit amet consectetur</b></p>
+                  <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-location-dot text-secondary"></i> From <b>Lorem ipsum, dolor</b></p>
+                  <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-heart text-secondary"></i></i> Single</p>
+                </div>
+
               `;
 
               // document.getElementById("profile-name").innerText = `${user.first_name+" "+user.last_name}`

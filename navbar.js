@@ -20,7 +20,7 @@ fetch("navbar.html")
                                 <a class="nav-link addPost"  data-bs-toggle="modal" data-bs-target="#createPostModal">AddPost</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Vedio</a>
+                                <a class="nav-link" href="#">Video</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Notification</a>
@@ -50,7 +50,7 @@ fetch("navbar.html")
                                 <a class="nav-link active" aria-current="page" href="./index.html">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Vedio</a>
+                                <a class="nav-link" href="#">Video</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Notification</a>

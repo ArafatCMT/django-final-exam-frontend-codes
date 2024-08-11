@@ -1,6 +1,6 @@
 .card-body-container{
     display: flex;
-    gap: 15px;
+    gap: 10px;
     align-items: center;
 }
 .pro-img{
@@ -31,4 +31,19 @@
 .link:hover{
     text-decoration: underline;
     color: black;
+}
+#profile-link:hover{
+    cursor: pointer;
+    background-color: #d4d4d4;
+}
+#home:hover{
+    cursor: pointer;
+    background-color: #d4d4d4;
+}
+.pro-card{
+    border-radius: 7px;
+}
+.pro-card:hover{
+    cursor: pointer;
+    background-color: #d4d4d4;
 }
