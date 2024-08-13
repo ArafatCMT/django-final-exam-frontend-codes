@@ -12,6 +12,8 @@ fetch("navbar.html")
     // console.log(token)
 
     if (token){
+        const parent = document.getElementById("net-book")
+        parent.innerHTML = `<a class="navbar-brand" id="navbar-brand" href="./home.html">Net Book</a>`
         navLeftSideElement.innerHTML += `
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="./home.html">Dashboard</a>
@@ -45,6 +47,8 @@ fetch("navbar.html")
 
     }
     else{
+        const parent = document.getElementById("net-book")
+        parent.innerHTML = `<a class="navbar-brand" id="navbar-brand" href="./index.html">Net Book</a>`
         navLeftSideElement.innerHTML += `
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="./index.html">Dashboard</a>
