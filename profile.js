@@ -50,10 +50,10 @@ const myPosts = () => {
                           .then((res) => res.json())
                           .then((comment) => {
                             div.innerHTML = `
-                                <div class="card mx-auto container" style="width: 50rem;">
+                                <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                                 <div class="card-body">
                                     <div class="col-12 row">
-                                        <div class="col-11 card-body-container mb-2">
+                                        <div class="col-9 card-body-container mb-2">
                                             <div class="" >
                                             <img src=${
                                               account.image_url
@@ -69,23 +69,22 @@ const myPosts = () => {
                                             </div>
                                         </div>
                                         
-                                        <div class="col-1 text-center">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Action
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="./profile.html?id=${
-                                                  post.id
-                                                }" data-bs-toggle="modal" data-bs-target="#editModal_${
-                              post.id
-                            }">Edit</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="deletePost(event,${
-                                                  post.id
-                                                })">Delete</a></li>
-                                            </ul>
+                                        <div class="col-3 text-center">
+                                          <div class="dropdown">
+                                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                              Action
+                                              </button>
+                                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                  <li><a class="dropdown-item" href="./profile.html?id=${
+                                                    post.id
+                                                  }" data-bs-toggle="modal" data-bs-target="#editModal_${post.id}">Edit</a></li>
+                                                  <li><a class="dropdown-item" href="#" onclick="deletePost(event,${
+                                                    post.id
+                                                  })">Delete</a></li>
+                                              </ul>
+                                          </div>
                                         </div>
-                                        </div>
+                                        
                                     </div>
                                     
                                     <p class="">${post.description}</p>
@@ -163,10 +162,10 @@ const myPosts = () => {
                           .then((res) => res.json())
                           .then((comment) => {
                             div.innerHTML = `
-                                <div class="card mx-auto container" style="width: 50rem;">
+                                <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                                 <div class="card-body">
                                     <div class="col-12 row">
-                                        <div class="col-11 card-body-container mb-2">
+                                        <div class="col-9 card-body-container mb-2">
                                             <div class="" >
                                             <img src=${
                                               account.image_url
@@ -182,7 +181,7 @@ const myPosts = () => {
                                             </div>
                                         </div>
                                         
-                                        <div class="col-1 text-center">
+                                        <div class="col-3 text-center">
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                             Action
@@ -327,7 +326,7 @@ const loadProfileData = () => {
             Edit Profile
             </button></p>
 
-            <div class="mt-5">
+            <div class="mt-5 ps-2">
               <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-circle-info text-secondary"></i> <b>Profile</b> . Digital Creator</p>
               <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-briefcase text-secondary"></i> Works at Lorem ipsum dolor sit amet</p>
               <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-graduation-cap text-secondary"></i> Went to <b>Lorem ipsum dolor sit amet consectetur</b></p>

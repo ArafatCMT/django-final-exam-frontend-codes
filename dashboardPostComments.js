@@ -47,7 +47,7 @@ const displayPost = () => {
                     .then((res) => res.json())
                     .then((comment) => {
                       div.innerHTML = `
-                            <div class="card mx-auto container" style="width: 50rem;">
+                            <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                             <div class="card-body">
                                 <div class="card-body-container mb-2">
                                     <a href="./visitProfile.html?account_id=${
@@ -134,7 +134,7 @@ const loadCommentForSinglePost = () => {
               .then((user) => {
                 // console.log(user)
                 div.innerHTML = `
-                <div class="card-body mb-3 border col-10 mx-auto">
+                <div class="card-body mb-3 border col-lg-10 col-md-12 col-sm-12 mx-auto">
                 <div class="col-11 card-body-container mb-2">
                     <a href="./visitProfile.html?account_id=${
                       comment.account

@@ -62,7 +62,7 @@ const showPost = () => {
                       .then((res) => res.json())
                       .then((comment) => {
                         div.innerHTML = `
-                              <div class="card mx-auto container" style="width: 50rem;">
+                              <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                               <div class="card-body">
                                   <div class="card-body-container mb-2">
                                       <a href="./visitProfileForLoggedInUser.html?account_id=${
@@ -127,7 +127,7 @@ const showPost = () => {
                       .then((res) => res.json())
                       .then((comment) => {
                         div.innerHTML = `
-                              <div class="card mx-auto container" style="width: 50rem;">
+                              <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                               <div class="card-body">
                                   <div class="card-body-container mb-2">
                                       <a href="./visitProfileForLoggedInUser.html?account_id=${
@@ -269,35 +269,36 @@ const loadComment = () => {
                 // console.log(user)
                 if (accountId == comment.account) {
                   div.innerHTML = `
-                <div class="card-body mb-3 border col-10 mx-auto">
-                <div class="col-12 row">
-                <div class="col-9 card-body-container mb-2" >
-                    <a href="./visitProfileForLoggedInUser.html?account_id=${
-                      comment.account
-                    }"><div>
-                                        <img src=${
-                                          account.image_url
-                                        } class="pro-img" alt="profile">
-                                    </div></a>
-                    <div>
-                    <a href="./visitProfileForLoggedInUser.html?account_id=${
-                      comment.account
-                    }" class="link" ><h6 class="title pb-0 mb-0">${
-                    user.first_name + " " + user.last_name
-                  }</h6></a>
-                    <small class="small pt-0 mt-0">Created : ${
-                      comment.created_on
-                    }</small>
-                    </div>
-                </div>
-                <div class="col-3 text-center">
-                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#commentModal_${
-                      comment.id
-                    }">Edit</button>
-                    <a onclick="deleteComment(event,${
-                      comment.id
-                    })" class="btn btn-danger btn-sm">Delete</a>
-                </div>
+                <div class="card-body mb-3 border col-lg-10 col-md-12 col-sm-12 mx-auto">
+                <div class=" d-flex justify-content-between">
+                  <div class=" card-body-container mb-2">
+                      <a href="./visitProfileForLoggedInUser.html?account_id=${
+                        comment.account
+                      }"><div>
+                                          <img src=${
+                                            account.image_url
+                                          } class="pro-img" alt="profile">
+                                      </div></a>
+                      <div>
+                      <a href="./visitProfileForLoggedInUser.html?account_id=${
+                        comment.account
+                      }" class="link" ><h6 class="title pb-0 mb-0">${
+                      user.first_name + " " + user.last_name
+                    }</h6></a>
+                      <small class="small pt-0 mt-0">Created : ${
+                        comment.created_on
+                      }</small>
+                      </div>
+                  </div>
+
+                  <div class="text-center">
+                      <a type="button" class="" data-bs-toggle="modal" data-bs-target="#commentModal_${
+                        comment.id
+                      }"><img src="./images/edit.png" alt="" class="cmnt-img"></a>
+                      <a onclick="deleteComment(event,${
+                        comment.id
+                      })" class=""><img src="./images/delete.png" alt="" class="cmnt-img"></a>
+                  </div>
                 </div>
       
                 <p class="card-text">${comment.body}</p>
@@ -339,9 +340,9 @@ const loadComment = () => {
             } 
           else {
                   div.innerHTML = `
-                <div class="card-body mb-3 border col-10 mx-auto">
-                <div class="col-12 row">
-                <div class="col-9 card-body-container mb-2">
+                <div class="card-body mb-3 border col-lg-10 col-md-12 col-sm-12 mx-auto">
+                <div class="col-lg-12 col-md-12 col-sm-12 row">
+                <div class="col-12 card-body-container mb-2">
                     <a href="./visitProfileForLoggedInUser.html?account_id=${
                       comment.account
                     }"><div>

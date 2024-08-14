@@ -20,41 +20,37 @@
 
     <!-- registration from -->
     <!-- <h1 class="mt-5 text-center">Sign Up</h1> -->
-     <div class="row col-8 mx-auto" style="margin-top: 75px;">
-      <div class="col-lg-5 col-md-12 col-sm-12 mx-auto">
-        <img src="./images/undraw_Reminder_re_fe15.png" alt="" class="reg-img">
-        <h1 style="color: #dc2626; font-weight: 600; width: 550px;">Hello, Friend!</h1>
+    <div class="row col-lg-8 col-md-12 col-sm-12 mx-auto" style="margin-top: 75px;">
+      <div class="col-lg-6 col-md-12 col-sm-12 mx-auto">
+        <img src="./images/undraw_Reminder_re_fe15.png" alt="" class="reg-img col-lg-12 col-md-12 col-sm-12">
+        <h1 style="color: #dc2626; font-weight: 600;">Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us.</p>
-     </div>
+      </div>
   
 
-    <div class="col-lg-5 col-md-12 col-sm-12 mx-auto" style="height: 100vh;">
-      <div class="registration-form">
-        <h1 class="">Sign Up</h1>
-        <form action="" id="registration-form" onsubmit="handleRegistration(event)" style="width: 550px;">
-          <p>User Name:</p>
-          <input type="text" class="form-control" id="username" name="username" required placeholder="Username">
-          <p>First Name:</p>
-          <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="Firstname">
-          <p>Last Name:</p>
-          <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Lastname">
-          <p>Email:</p>
-          <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
-          <p>Password:</p>
-          <input type="password" class="form-control" id="password1" name="password1" required placeholder="Password">
-          <p>Confirm Password:</p>
-          <input type="password" class="form-control" id="password2" name="password2" required placeholder="Confirm Password">
-          <p class="text-danger"><b id="error"></b></p>
-          <button type="submit" class="res-submit">Sign Up</button>
-          <!-- <div class="sign-up-link">
-              <p>Already have an account? <a href="./login.html">Log In</a></p>
-          </div> -->
-      </form>
+      <div class="col-lg-6 col-md-12 col-sm-12 mx-auto" style="height: 100vh;">
+        <div class="registration-form">
+          <h1 class="">Sign Up</h1>
+          <form action="" id="registration-form" onsubmit="handleRegistration(event)">
+            <p>User Name:</p>
+            <input type="text" class="form-control" id="username" name="username" required placeholder="Username">
+            <p>First Name:</p>
+            <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="Firstname">
+            <p>Last Name:</p>
+            <input type="text" class="form-control" id="last_name" name="last_name" required placeholder="Lastname">
+            <p>Email:</p>
+            <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+            <p>Password:</p>
+            <input type="password" class="form-control" id="password1" name="password1" required placeholder="Password">
+            <p>Confirm Password:</p>
+            <input type="password" class="form-control" id="password2" name="password2" required placeholder="Confirm Password">
+            <p class="text-danger"><b id="error"></b></p>
+            <button type="submit" class="res-submit col-lg-2 col-md-4 col-sm-4">Sign Up</button>
+        </form>
+        </div>
       </div>
-    </div>
     
      </div>
-
    
     <script src="./navbar.js"></script>
     <script src="./auth.js"></script>

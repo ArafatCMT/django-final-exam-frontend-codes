@@ -41,7 +41,7 @@ const ShowAllPostForPublic = () => {
                         .then((res) => res.json())
                         .then((comment) => {
                           div.innerHTML = `
-                              <div class="card mx-auto container" style="width: 50rem;">
+                              <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                               <div class="card-body">
                                   <div class="card-body-container mb-2">
                                   <a href="./visitProfile.html?account_id=${

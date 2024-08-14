@@ -48,7 +48,7 @@ const OtherPosts = () => {
                             .then((res) => res.json())
                             .then((comment) => {
                               div.innerHTML = `
-                                <div class="card mx-auto container" style="width: 50rem;">
+                                <div class="card mx-auto container col-lg-12 col-md-12 col-sm-12">
                                 <div class="card-body">
                                     <div class="col-12 row">
                                         <div class="col-11 card-body-container mb-2">
@@ -129,7 +129,7 @@ const loadProfile = () => {
                 user.first_name + " " + user.last_name
               }</h3>
 
-                <div class="mt-5">
+                <div class="mt-5 ps-2">
                   <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-circle-info text-secondary"></i> <b>Profile</b> . Digital Creator</p>
                   <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-briefcase text-secondary"></i> Works at Lorem ipsum dolor sit amet</p>
                   <p class="mt-0 pt-0" style="color: rgb(62, 61, 61);"><i class="fa-solid fa-graduation-cap text-secondary"></i> Went to <b>Lorem ipsum dolor sit amet consectetur</b></p>

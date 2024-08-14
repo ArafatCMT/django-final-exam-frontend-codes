@@ -52,6 +52,10 @@
     text-align: center;
 }
 .not-found{
-    width: 800px;
+    width: 350px;
     border-radius: 5px;
+}
+.cmnt-img{
+    width: 22px;
+    height: 22px;
 }

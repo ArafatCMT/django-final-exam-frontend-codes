@@ -35,7 +35,7 @@ fetch("navbar.html")
 
         navRightSideElement.innerHTML +=`
                             
-                            <li class="nav-but">
+                            <li class="nav-but mb-2">
                                 <a class="profile-btn button" href="./profile.html">Profile</a>
                             </li>
                             <li class="nav-but">
@@ -65,7 +65,7 @@ fetch("navbar.html")
 
                             `;
         navRightSideElement.innerHTML +=`
-                            <li class="nav-but">
+                            <li class="nav-but mb-2">
                                 <a class="signup-btn button" href="./registration.html">SignUp</a>
                             </li>
                             <li class="nav-but">
