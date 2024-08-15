@@ -35,6 +35,7 @@ const ShowAllPostForPublic = () => {
                     .then((res) => res.json())
                     .then((like) => {
                       // ak ta post e total comment bair kortaci
+                      
                       fetch(
                         `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
                       )
