@@ -67,8 +67,10 @@ const handleLogin = (event) => {
         localStorage.setItem("accountId", data.user_id);
         window.location.href = "./home.html";
       } else {
-        window.location.href = "./login.html";
-        throw new Error("Invalid login response");
+        document.getElementById("error").innerText =
+      "invalid username & password";
+        // window.location.href = "./login.html";
+        // throw new Error("Invalid login response");
       }
     })
     .catch((error) => {
