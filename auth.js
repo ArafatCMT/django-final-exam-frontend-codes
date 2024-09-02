@@ -23,7 +23,7 @@ const handleRegistration = (event) => {
         RegistrationData.password
       )
     ) {
-      fetch("https://net-book.onrender.com/accounts/register/", {
+      fetch("https://net-book-klqt.onrender.com/accounts/register/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(RegistrationData),
@@ -54,17 +54,17 @@ const handleLogin = (event) => {
   };
 
   console.log(loginData);
-  fetch("https://net-book.onrender.com/accounts/login/", {
+  fetch("https://net-book-klqt.onrender.com/accounts/login/", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(loginData),
   })
     .then((res) => res.json())
     .then((data) => {
-      if (data.token && data.user_id) {
+      if (data.token && data.account_id) {
         // console.log(data.token, data.user_id);
         localStorage.setItem("authToken", data.token);
-        localStorage.setItem("accountId", data.user_id);
+        localStorage.setItem("accountId", data.account_id);
         window.location.href = "./home.html";
       } else {
         document.getElementById("error").innerText =
@@ -82,7 +82,7 @@ const handleLogout = () => {
   const token = localStorage.getItem("authToken");
   console.log(token);
 
-  fetch("https://net-book.onrender.com/accounts/logout/", {
+  fetch("https://net-book-klqt.onrender.com/accounts/logout/", {
     method: "GET",
     headers: {
       "content-type": "application/json",

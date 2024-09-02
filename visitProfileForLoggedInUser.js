@@ -10,7 +10,7 @@ const OtherProfilePosts = () => {
   const myAccountId = localStorage.getItem("accountId");
   // console.log(accountId)
 
-      fetch(`https://net-book.onrender.com/posts/all/?account_id=${accountId}`)
+      fetch(`https://net-book-klqt.onrender.com/posts/all/?account_id=${accountId}`)
         .then((res) => res.json())
         .then((posts) => {
           // console.log(posts)
@@ -24,12 +24,12 @@ const OtherProfilePosts = () => {
           {
             posts.forEach((post) => {
               // console.log(post)
-              fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
                 .then((res) => res.json())
                 .then((account) => {
                   // console.log(account);
   
-                  fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+                  fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
                     .then((res) => res.json())
                     .then((user) => {
                       // console.log(user);
@@ -40,7 +40,7 @@ const OtherProfilePosts = () => {
                       div.classList.add("mb-5");
   
                       fetch(
-                        `https://net-book.onrender.com/likes/total/?post_id=${post.id}`
+                        `https://net-book-klqt.onrender.com/likes/total/?post_id=${post.id}`
                       )
                         .then((res) => res.json())
                         .then((likes) => {
@@ -57,7 +57,7 @@ const OtherProfilePosts = () => {
                           if(is_like == true)
                           {
                             fetch(
-                              `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                              `https://net-book-klqt.onrender.com/comments/list/?post_id=${post.id}`
                             )
                               .then((res) => res.json())
                               .then((comment) => {
@@ -112,7 +112,7 @@ const OtherProfilePosts = () => {
                           else
                           {
                             fetch(
-                              `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                              `https://net-book-klqt.onrender.com/comments/list/?post_id=${post.id}`
                             )
                               .then((res) => res.json())
                               .then((comment) => {
@@ -184,28 +184,28 @@ const loadOtherProfile = () =>{
       window.location.href = `./profile.html`
     }
   
-          fetch(`https://net-book.onrender.com/accounts/friend/${user_id}/${accountId}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/friend/${user_id}/${accountId}/`)
           .then(res => res.json())
           .then(data =>{
             // console.log(data)
             if(data.receiver_account == null)
             { 
               // friend na 
-              fetch(`https://net-book.onrender.com/accounts/send/request/${user_id}/${accountId}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/send/request/${user_id}/${accountId}/`)
               .then(res => res.json())
               .then(data =>{
                 // console.log(data,'ami dei nai')
                 if(data.receiver == null)
                 { 
                   // friend request dece
-                  fetch(`https://net-book.onrender.com/accounts/send/request/${accountId}/${user_id}/`)
+                  fetch(`https://net-book-klqt.onrender.com/accounts/send/request/${accountId}/${user_id}/`)
                   .then(res => res.json())
                   .then(data =>{
                     // console.log(data)
                     if(data.sender == accountId)
                     {
                       console.log('dece add friend')
-                      fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+                      fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
                         .then((res) => res.json())
                         .then((data) => {
                           const topHeader = document.getElementById("top-header");
@@ -215,7 +215,7 @@ const loadOtherProfile = () =>{
                           div.classList.add("img-div");
                           // console.log(data)
                 
-                          fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
+                          fetch(`https://net-book-klqt.onrender.com/accounts/user/${data.user}/`)
                             .then((res) => res.json())
                             .then((user) => {
                               // console.log(user)
@@ -249,7 +249,7 @@ const loadOtherProfile = () =>{
                     else
                     {
                       // console.log("na dei nai")
-                      fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+                      fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
                         .then((res) => res.json())
                         .then((data) => {
                           const topHeader = document.getElementById("top-header");
@@ -259,7 +259,7 @@ const loadOtherProfile = () =>{
                           div.classList.add("img-div");
                           // console.log(data)
                 
-                          fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
+                          fetch(`https://net-book-klqt.onrender.com/accounts/user/${data.user}/`)
                             .then((res) => res.json())
                             .then((user) => {
                               // console.log(user)
@@ -291,7 +291,7 @@ const loadOtherProfile = () =>{
                 else
                 {
                   // friend request ami dici 
-                  fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+                  fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
                     .then((res) => res.json())
                     .then((data) => {
                       const topHeader = document.getElementById("top-header");
@@ -301,7 +301,7 @@ const loadOtherProfile = () =>{
                       div.classList.add("img-div");
                       // console.log(data)
             
-                      fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
+                      fetch(`https://net-book-klqt.onrender.com/accounts/user/${data.user}/`)
                         .then((res) => res.json())
                         .then((user) => {
                           // console.log(user)
@@ -333,7 +333,7 @@ const loadOtherProfile = () =>{
             else
             {
               // friend 
-              fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
               .then((res) => res.json())
               .then((data) => {
                 const topHeader = document.getElementById("top-header");
@@ -343,7 +343,7 @@ const loadOtherProfile = () =>{
                 div.classList.add("img-div");
                 // console.log(data)
       
-                fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
+                fetch(`https://net-book-klqt.onrender.com/accounts/user/${data.user}/`)
                   .then((res) => res.json())
                   .then((user) => {
                     // console.log(user)
@@ -378,11 +378,11 @@ const loadOtherProfile = () =>{
 
 
           // friend 
-    fetch(`https://net-book.onrender.com/accounts/receive/accept/?account_id=${accountId}`)
+    fetch(`https://net-book-klqt.onrender.com/accounts/receive/accept/?account_id=${accountId}`)
     .then(res => res.json())
     .then(data_1 =>{
       // console.log(data_1)
-      fetch(`https://net-book.onrender.com/accounts/send/accept/?account_id=${accountId}`)
+      fetch(`https://net-book-klqt.onrender.com/accounts/send/accept/?account_id=${accountId}`)
       .then(res => res.json())
       .then(data_2 =>{
 
@@ -417,11 +417,11 @@ const loadOtherProfile = () =>{
 
           if(friends[i].receiver_account == accountId)
           {
-            fetch(`https://net-book.onrender.com/accounts/profile/${friends[i].sender_account}/`)
+            fetch(`https://net-book-klqt.onrender.com/accounts/profile/${friends[i].sender_account}/`)
             .then((res) => res.json())
             .then((account) => {
-            // console.log(account)
-              fetch(`https://net-book.onrender.com/accounts/user/${friends[i].sender_account}/`)
+            // console.log(account, account.id)
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
               .then((res) => res.json())
               .then(user =>{
                 div.innerHTML = `
@@ -441,11 +441,11 @@ const loadOtherProfile = () =>{
           }
           if(friends[i].sender_account == accountId)
           {
-            fetch(`https://net-book.onrender.com/accounts/profile/${friends[i].receiver_account}/`)
+            fetch(`https://net-book-klqt.onrender.com/accounts/profile/${friends[i].receiver_account}/`)
             .then((res) => res.json())
             .then((account) => {
               // console.log(account)
-              fetch(`https://net-book.onrender.com/accounts/user/${friends[i].receiver_account}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
               .then((res) => res.json())
               .then(user =>{
                 div.innerHTML = `
@@ -472,7 +472,7 @@ const addFriend = (event, id) => {
   // console.log('hello', id);
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://net-book.onrender.com/accounts/profile/${id}/`)
+  fetch(`https://net-book-klqt.onrender.com/accounts/profile/${id}/`)
     .then((res) => res.json())
     .then((data) => {
       const receiver = {
@@ -480,7 +480,7 @@ const addFriend = (event, id) => {
       };
       console.log(receiver);
       console.log(JSON.stringify(receiver));
-      fetch(`https://net-book.onrender.com/accounts/friend/request/`, {
+      fetch(`https://net-book-klqt.onrender.com/accounts/friend/request/`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -513,7 +513,7 @@ const removeRequest = (event, id, track) =>{
   if(track == 1)
   {
     // console.log(track)
-    fetch(`https://net-book.onrender.com/accounts/accept/${accountId}/${id}/${0}/`,{
+    fetch(`https://net-book-klqt.onrender.com/accounts/accept/${accountId}/${id}/${0}/`,{
       method:"GET",
       headers: {
         "content-type": "application/json",
@@ -526,7 +526,7 @@ const removeRequest = (event, id, track) =>{
   }
   else
   {
-    fetch(`https://net-book.onrender.com/accounts/accept/${id}/${accountId}/${0}/`,{
+    fetch(`https://net-book-klqt.onrender.com/accounts/accept/${id}/${accountId}/${0}/`,{
       method:"GET",
       headers: {
         "content-type": "application/json",
@@ -544,7 +544,7 @@ const Confirm = (event, id)=>{
   const token = localStorage.getItem("authToken");
   const accountId = localStorage.getItem("accountId")
 
-  fetch(`https://net-book.onrender.com/accounts/accept/${id}/${accountId}/${1}/`,{
+  fetch(`https://net-book-klqt.onrender.com/accounts/accept/${id}/${accountId}/${1}/`,{
     method:"GET",
     headers: {
       "content-type": "application/json",
@@ -560,7 +560,7 @@ const Unfriend = (event, id) =>{
   event.preventDefault();
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://net-book.onrender.com/accounts/unfriend/${id}/`,{
+  fetch(`https://net-book-klqt.onrender.com/accounts/unfriend/${id}/`,{
     method:"GET",
     headers: {
       "content-type": "application/json",
@@ -578,7 +578,7 @@ OtherProfilePosts()
 // const loadOtherProfile = () => {
 //   const accountId = CatchParam();
 
-//       fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+//       fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
 //         .then((res) => res.json())
 //         .then((data) => {
 //           const topHeader = document.getElementById("top-profile");
@@ -588,7 +588,7 @@ OtherProfilePosts()
 //           div.classList.add("img-div");
 //           // console.log(data)
 
-//           fetch(`https://net-book.onrender.com/accounts/user/${data.user}/`)
+//           fetch(`https://net-book-klqt.onrender.com/accounts/user/${data.user}/`)
 //             .then((res) => res.json())
 //             .then((user) => {
 //               // console.log(user)

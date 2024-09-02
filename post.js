@@ -26,7 +26,7 @@ const addPost = (event) => {
       console.log(data.data.url);
       console.log("postData", postData);
 
-      fetch("https://net-book.onrender.com/posts/upload/", {
+      fetch("https://net-book-klqt.onrender.com/posts/upload/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const addPost = (event) => {
 const getAllPost = () => {
   // total post
   const accountId =localStorage.getItem("accountId");
-  fetch("https://net-book.onrender.com/posts/all/")
+  fetch("https://net-book-klqt.onrender.com/posts/all/")
     .then((res) => res.json())
     .then((posts) => {
       const parent = document.getElementById("allPost");
@@ -56,13 +56,13 @@ const getAllPost = () => {
         posts.forEach((post) => {
           // console.log(post)
           // kon account thake post kora hoica
-          fetch(`https://net-book.onrender.com/accounts/profile/${post.account}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/profile/${post.account}/`)
             .then((res) => res.json())
             .then((account) => {
               // console.log(account)
   
               // account er first_name r last_name bair kortaci
-              fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
                 .then((res) => res.json())
                 .then((user) => {
                   // console.log(user);
@@ -73,7 +73,7 @@ const getAllPost = () => {
                   div.classList.add("mb-5");
   
                   // ak ta post e total like bair kortaci
-                  fetch(`https://net-book.onrender.com/likes/total/?post_id=${post.id}`)
+                  fetch(`https://net-book-klqt.onrender.com/likes/total/?post_id=${post.id}`)
                     .then((res) => res.json())
                     .then((likes) => {
                       // ak ta post e total comment bair kortaci
@@ -91,7 +91,7 @@ const getAllPost = () => {
                       if(is_like == true)
                       {
                         fetch(
-                          `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                          `https://net-book-klqt.onrender.com/comments/list/?post_id=${post.id}`
                         )
                           .then((res) => res.json())
                           .then((comment) => {
@@ -144,7 +144,7 @@ const getAllPost = () => {
                       else
                       {
                         fetch(
-                          `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                          `https://net-book-klqt.onrender.com/comments/list/?post_id=${post.id}`
                         )
                           .then((res) => res.json())
                           .then((comment) => {
@@ -204,11 +204,11 @@ const getAllPost = () => {
     });
 
     const profile_card = document.getElementById("profile-link")
-    fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+    fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
     .then((res) => res.json())
     .then((account) => {
 
-      fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+      fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 const div = document.createElement("div");
@@ -227,14 +227,14 @@ const getAllPost = () => {
     })
 
     const pro_file = document.getElementById("profile-1")
-    fetch(`https://net-book.onrender.com/accounts/profile/`)
+    fetch(`https://net-book-klqt.onrender.com/accounts/profile/`)
     .then((res) => res.json())
     .then((accounts) => {
       
       accounts.forEach((account) =>{
         if(account.id != accountId)
         {
-          fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 const div = document.createElement("div");
@@ -264,11 +264,11 @@ const PostModal = () => {
   const div = document.createElement("div");
   const accountId = localStorage.getItem("accountId");
 
-  fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+  fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
   .then((res) => res.json())
   .then((account) =>{
-
-        fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+    
+        fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
           .then((res) => res.json())
           .then((user) => {
             div.innerHTML = `

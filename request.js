@@ -2,11 +2,11 @@ const myProfile_ = () =>{
     const accountId = localStorage.getItem("accountId")
 
     const profile_card = document.getElementById("profile-link")
-    fetch(`https://net-book.onrender.com/accounts/profile/${accountId}/`)
+    fetch(`https://net-book-klqt.onrender.com/accounts/profile/${accountId}/`)
     .then((res) => res.json())
     .then((account) => {
 
-      fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+      fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 const div = document.createElement("div");
@@ -25,14 +25,14 @@ const myProfile_ = () =>{
     })
 
     const pro_file = document.getElementById("profile-1")
-    fetch(`https://net-book.onrender.com/accounts/profile/`)
+    fetch(`https://net-book-klqt.onrender.com/accounts/profile/`)
     .then((res) => res.json())
     .then((accounts) => {
       
       accounts.forEach((account) =>{
         if(account.id != accountId)
         {
-          fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 const div = document.createElement("div");
@@ -57,7 +57,7 @@ const myProfile_ = () =>{
 }
 const loadRequest = () =>{
   const accountId = localStorage.getItem("accountId")
-  fetch(`https://net-book.onrender.com/accounts/receive/request/?account_id=${accountId}`)
+  fetch(`https://net-book-klqt.onrender.com/accounts/receive/request/?account_id=${accountId}`)
   .then((res) => res.json())
   .then((data) => {
     // console.log(data.length)
@@ -72,11 +72,11 @@ const loadRequest = () =>{
       const parent = document.getElementById("allRequest")
 
       data.forEach((obj) =>{
-        fetch(`https://net-book.onrender.com/accounts/profile/${obj.sender}/`)
+        fetch(`https://net-book-klqt.onrender.com/accounts/profile/${obj.sender}/`)
         .then(res => res.json())
         .then(account => {
           
-          fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
             .then((res) => res.json())
             .then((user) => {
               // console.log(user)
@@ -123,7 +123,7 @@ const RemoveRequest = (event, id) =>{
   const accountId = localStorage.getItem("accountId")
 
   
-    fetch(`https://net-book.onrender.com/accounts/accept/${id}/${accountId}/${0}/`,{
+    fetch(`https://net-book-klqt.onrender.com/accounts/accept/${id}/${accountId}/${0}/`,{
       method:"GET",
       headers: {
         "content-type": "application/json",
@@ -142,7 +142,7 @@ const Confirm_ = (event, id)=>{
   const token = localStorage.getItem("authToken");
   const accountId = localStorage.getItem("accountId")
 
-  fetch(`https://net-book.onrender.com/accounts/accept/${id}/${accountId}/${1}/`,{
+  fetch(`https://net-book-klqt.onrender.com/accounts/accept/${id}/${accountId}/${1}/`,{
     method:"GET",
     headers: {
       "content-type": "application/json",

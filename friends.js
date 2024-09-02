@@ -1,15 +1,15 @@
 const Friends = () =>{
     const accountId = localStorage.getItem("accountId")
-    console.log(accountId)
+    // console.log(accountId)
 // friend 
-fetch(`https://net-book.onrender.com/accounts/receive/accept/?account_id=${accountId}`)
+fetch(`https://net-book-klqt.onrender.com/accounts/receive/accept/?account_id=${accountId}`)
 .then(res => res.json())
 .then(data_1 =>{
-  console.log(data_1)
-  fetch(`https://net-book.onrender.com/accounts/send/accept/?account_id=${accountId}`)
+  // console.log(data_1)
+  fetch(`https://net-book-klqt.onrender.com/accounts/send/accept/?account_id=${accountId}`)
   .then(res => res.json())
   .then(data_2 =>{
-    console.log(data_1)
+    // console.log(data_1)
     let friends = []
 
     data_1.forEach((data)=>{
@@ -44,11 +44,11 @@ fetch(`https://net-book.onrender.com/accounts/receive/accept/?account_id=${accou
 
       if(friends[i].receiver_account == accountId)
       {
-        fetch(`https://net-book.onrender.com/accounts/profile/${friends[i].sender_account}/`)
+        fetch(`https://net-book-klqt.onrender.com/accounts/profile/${friends[i].sender_account}/`)
         .then((res) => res.json())
         .then((account) => {
-        // console.log(account)
-          fetch(`https://net-book.onrender.com/accounts/user/${friends[i].sender_account}/`)
+        // console.log(friends[i].sender_account, accountId)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
           .then((res) => res.json())
           .then(user =>{
             div.innerHTML = `
@@ -68,11 +68,11 @@ fetch(`https://net-book.onrender.com/accounts/receive/accept/?account_id=${accou
       }
       if(friends[i].sender_account == accountId)
       {
-        fetch(`https://net-book.onrender.com/accounts/profile/${friends[i].receiver_account}/`)
+        fetch(`https://net-book-klqt.onrender.com/accounts/profile/${friends[i].receiver_account}/`)
         .then((res) => res.json())
         .then((account) => {
-        //   console.log(account)
-          fetch(`https://net-book.onrender.com/accounts/user/${friends[i].receiver_account}/`)
+          // console.log(account,friends[i].receiver_account,'hello')
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
           .then((res) => res.json())
           .then(user =>{
             div.innerHTML = `

@@ -14,7 +14,7 @@ const showPost = () => {
   const parent = document.getElementById("post_section");
 
   // post
-  fetch(`https://net-book.onrender.com/posts/detail/${postId}/`, {
+  fetch(`https://net-book-klqt.onrender.com/posts/detail/${postId}/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -25,12 +25,12 @@ const showPost = () => {
     .then((post) => {
       // console.log(post)
       // hello
-      fetch(`https://net-book.onrender.com/accounts/profile/${post.account}/`)
+      fetch(`https://net-book-klqt.onrender.com/accounts/profile/${post.account}/`)
         .then((res) => res.json())
         .then((account) => {
           // console.log(account.image_url)
 
-          fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
             .then((res) => res.json())
             .then((user) => {
               // console.log(user)
@@ -40,7 +40,7 @@ const showPost = () => {
               div.classList.add("col-sm-12");
               div.classList.add("mb-5");
 
-              fetch(`https://net-book.onrender.com/likes/total/?post_id=${post.id}`)
+              fetch(`https://net-book-klqt.onrender.com/likes/total/?post_id=${post.id}`)
                 .then((res) => res.json())
                 .then((likes) => {
                   let is_like = false;
@@ -57,7 +57,7 @@ const showPost = () => {
                   if(is_like == true)
                   {
                     fetch(
-                      `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                      `https://net-book-klqt.onrender.com/comments/list/?post_id=${post.id}`
                     )
                       .then((res) => res.json())
                       .then((comment) => {
@@ -122,7 +122,7 @@ const showPost = () => {
                   else
                   {
                     fetch(
-                      `https://net-book.onrender.com/comments/list/?post_id=${post.id}`
+                      `https://net-book-klqt.onrender.com/comments/list/?post_id=${post.id}`
                     )
                       .then((res) => res.json())
                       .then((comment) => {
@@ -204,7 +204,7 @@ const SubmitComment = (event, id) => {
 
   // console.log(body)
 
-  fetch(`https://net-book.onrender.com/posts/detail/${id}/`, {
+  fetch(`https://net-book-klqt.onrender.com/posts/detail/${id}/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -220,7 +220,7 @@ const SubmitComment = (event, id) => {
       // console.log(commentData)
       // console.log(JSON.stringify(commentData))
 
-      fetch("https://net-book.onrender.com/comments/post/", {
+      fetch("https://net-book-klqt.onrender.com/comments/post/", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -244,7 +244,7 @@ const loadComment = () => {
   const accountId = localStorage.getItem("accountId");
   const parent = document.getElementById("comment_section");
 
-  fetch(`https://net-book.onrender.com/comments/list/?post_id=${postId}`, {
+  fetch(`https://net-book-klqt.onrender.com/comments/list/?post_id=${postId}`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -259,11 +259,11 @@ const loadComment = () => {
         // console.log(comment)
         const div = document.createElement("div");
 
-        fetch(`https://net-book.onrender.com/accounts/profile/${comment.account}/`)
+        fetch(`https://net-book-klqt.onrender.com/accounts/profile/${comment.account}/`)
           .then((res) => res.json())
           .then((account) => {
             // console.log(account)
-            fetch(`https://net-book.onrender.com/accounts/user/${account.user}/`)
+            fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then((user) => {
                 // console.log(user)
@@ -382,7 +382,7 @@ const Like = (event,id) => {
   const token = localStorage.getItem("authToken");
   // console.log(token)
 
-  fetch(`https://net-book.onrender.com/posts/detail/${id}/`, {
+  fetch(`https://net-book-klqt.onrender.com/posts/detail/${id}/`, {
     method: "GET",
     headers: {
       "content-type": "application/json",
@@ -395,7 +395,7 @@ const Like = (event,id) => {
         post: post.id,
       };
 
-      fetch("https://net-book.onrender.com/likes/like/", {
+      fetch("https://net-book-klqt.onrender.com/likes/like/", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -424,7 +424,7 @@ const editComment = (event, commentId) => {
   };
   // console.log(JSON.stringify(commentData))
 
-  fetch(`https://net-book.onrender.com/comments/detail/${commentId}/`, {
+  fetch(`https://net-book-klqt.onrender.com/comments/detail/${commentId}/`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -441,7 +441,7 @@ const deleteComment = (event, commentId) => {
   const postId = getQueryParam();
   const token = localStorage.getItem("authToken");
 
-  fetch(`https://net-book.onrender.com/comments/detail/${commentId}/`, {
+  fetch(`https://net-book-klqt.onrender.com/comments/detail/${commentId}/`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
