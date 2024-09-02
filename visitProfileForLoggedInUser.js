@@ -421,7 +421,7 @@ const loadOtherProfile = () =>{
             .then((res) => res.json())
             .then((account) => {
             // console.log(account, account.id)
-              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then(user =>{
                 div.innerHTML = `
@@ -445,7 +445,7 @@ const loadOtherProfile = () =>{
             .then((res) => res.json())
             .then((account) => {
               // console.log(account)
-              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then(user =>{
                 div.innerHTML = `

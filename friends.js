@@ -48,7 +48,7 @@ fetch(`https://net-book-klqt.onrender.com/accounts/receive/accept/?account_id=${
         .then((res) => res.json())
         .then((account) => {
         // console.log(friends[i].sender_account, accountId)
-          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
           .then((res) => res.json())
           .then(user =>{
             div.innerHTML = `
@@ -72,7 +72,7 @@ fetch(`https://net-book-klqt.onrender.com/accounts/receive/accept/?account_id=${
         .then((res) => res.json())
         .then((account) => {
           // console.log(account,friends[i].receiver_account,'hello')
-          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
+          fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
           .then((res) => res.json())
           .then(user =>{
             div.innerHTML = `

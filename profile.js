@@ -353,8 +353,8 @@ const loadProfileData = () => {
       fetch(`https://net-book-klqt.onrender.com/accounts/send/accept/?account_id=${accountId}`)
       .then(res => res.json())
       .then(data_2 =>{
-        console.log(data_1)
-        console.log(data_2)
+        // console.log(data_1)
+        // console.log(data_2)
         let friends = []
 
         data_1.forEach((data)=>{
@@ -391,7 +391,7 @@ const loadProfileData = () => {
             .then((res) => res.json())
             .then((account) => {
             // console.log(account, 'hello')
-              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then(user =>{
                 console.log(user)
@@ -416,11 +416,11 @@ const loadProfileData = () => {
             fetch(`https://net-book-klqt.onrender.com/accounts/profile/${friends[i].receiver_account}/`)
             .then((res) => res.json())
             .then((account) => {
-              // console.log(account.id,'good')
-              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.id+1}/`)
+              // console.log(account,'good')
+              fetch(`https://net-book-klqt.onrender.com/accounts/user/${account.user}/`)
               .then((res) => res.json())
               .then(user =>{
-                console.log(user)
+                // console.log(user)
                 div.innerHTML = `
                 <a href="./visitProfileForLoggedInUser.html?account_id=${account.id}" style="text-decoration: none;">
                   <div class="col-11 card-body-container mb-2">
